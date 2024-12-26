@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annamalai - Resume</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: black;
+            color: #00FF00;
+            padding: 20px;
+        }
+        #terminal {
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00FF00;
+            width: 100%;
+        }
+        #cursor {
+            display: inline-block;
+            background-color: #00FF00;
+            width: 10px;
+            height: 20px;
+            animation: blink 0.7s step-end infinite;
+        }
+        @keyframes blink {
+            50% {
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="terminal"></div>
+<div id="cursor"></div>
+
+<script>
+    const terminalText = [
+        "Automated deployment using Docker and Kubernetes.",
+        "Managed AWS services (EC2, S3, Lambda).",
+        "Optimized billing and resource usage for cost-effective, scalable cloud solutions."
+    ];
+
+    let currentLine = 0;
+    let currentChar = 0;
+    const terminalElement = document.getElementById("terminal");
+    const cursorElement = document.getElementById("cursor");
+
+    function typeText() {
+        if (currentLine < terminalText.length) {
+            if (currentChar < terminalText[currentLine].length) {
+                terminalElement.textContent += terminalText[currentLine][currentChar];
+                currentChar++;
+                setTimeout(typeText, 100);  // Adjust speed here (in ms)
+            } else {
+                currentLine++;
+                currentChar = 0;
+                setTimeout(typeText, 500);  // Delay before next line
+            }
+        }
+    }
+
+    typeText();
+</script>
+
+</body>
+</html>
